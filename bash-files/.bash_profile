@@ -1,13 +1,17 @@
-[[ -s ~/.bashrc ]] && source ~/.bashrc
-export PATH=/usr/local/bin:$PATH
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-source /usr/local/bin/virtualenvwrapper.sh
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+# Setting PATH for Python 3.4
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.4/bin:${PATH}"
+export PATH
+
+#git tab completion (homebrew)
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+    . /usr/local/etc/bash_completion.d/git-completion.bash
 fi
 
-source ~/.git-prompt.sh
+source /usr/local/etc/bash_completion.d/git-prompt.sh
 
 Black='\e[0;30m'        # Black
 Red='\e[0;31m'          # Red
@@ -26,4 +30,5 @@ On_Blue='\e[44m'        # Blue
 On_Purple='\e[45m'      # Purple
 On_Cyan='\e[46m'        # Cyan
 On_White='\e[47m'       # White
+
 PS1="\[$Blue\]\@\[$Blue\]-\[$Green\]\u\[$Blue\]\[$Blue\]\w\[\033[m\]\[$Green\]\$(__git_ps1)\[$Blue\]\$\[$Black\] "
